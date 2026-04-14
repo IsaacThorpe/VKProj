@@ -33,12 +33,26 @@ target_link_libraries(VKProject
         Vulkan::Vulkan
 )
 
-# ---- Windows-specific settings ----
+# ---- Platform-specific settings ----
 if(WIN32)
     target_compile_definitions(VKProject PRIVATE VK_USE_PLATFORM_WIN32_KHR)
 
     # Optional: avoid console window for GUI apps
     # set_target_properties(VKProject PROPERTIES WIN32_EXECUTABLE TRUE)
+
+elseif(UNIX)
+    # ---- Dependencies ----
+    find_package(Threads REQUIRED)
+
+    target_link_libraries(VKProject 
+        PRIVATE 
+            Threads::Threads
+            dl 
+            X11 
+            Xxf86vm 
+            Xrandr 
+            Xi 
+        )
 endif()
 
 # ---- Debug / Release macros ----
