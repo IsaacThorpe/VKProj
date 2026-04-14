@@ -35,3 +35,4 @@ void cleanup() {
     cleanupVulkan();
     cleanupWindow();
 }
+
