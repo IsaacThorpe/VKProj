@@ -1,0 +1,21 @@
+#include "window.hpp"
+
+const uint32_t WIDTH = 800;
+const uint32_t HEIGHT = 600;
+
+GLFWwindow* window;
+
+void initWindow() {
+    glfwInit();
+
+    glfwWindowHint(GLFW_CLIENT_API, GLFW_NO_API);
+    glfwWindowHint(GLFW_RESIZABLE, GLFW_FALSE);
+
+    window = glfwCreateWindow(WIDTH, HEIGHT, "Vulkan", nullptr, nullptr);
+}
+
+void cleanupWindow() {
+    glfwDestroyWindow(window);
+    glfwTerminate();
+}
+
