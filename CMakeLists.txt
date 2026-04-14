@@ -22,7 +22,7 @@ target_include_directories(VKProject PRIVATE
     ${CMAKE_CURRENT_SOURCE_DIR}/include
 )
 
-# ---- Dependencies ----
+# ---- Multi-platform Dependencies ----
 add_subdirectory(external/glfw)
 
 find_package(Vulkan REQUIRED)
@@ -35,13 +35,13 @@ target_link_libraries(VKProject
 
 # ---- Platform-specific settings ----
 if(WIN32)
-    target_compile_definitions(VKProject PRIVATE VK_USE_PLATFORM_WIN32_KHR)
 
     # Optional: avoid console window for GUI apps
     # set_target_properties(VKProject PROPERTIES WIN32_EXECUTABLE TRUE)
 
-elseif(UNIX)
-    # ---- Dependencies ----
+elseif(UNIX) # Just Wayland for now
+
+    # ---- Unix Dependencies ----
     find_package(Threads REQUIRED)
 
     target_link_libraries(VKProject 
