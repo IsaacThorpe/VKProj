@@ -1,5 +1,5 @@
 #pragma once
-#include "vulkan_context.hpp"
+#include "vulkan_context.hpp" // IWYU pragma: keep
 
 #include <vector>
 

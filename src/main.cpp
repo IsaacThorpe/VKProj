@@ -1,4 +1,4 @@
-#include "vulkan_context.hpp" // THIS FIRST
+#include "vulkan_context.hpp" // IWYU pragma: keep
 
 #include <iostream>
 #include <cstdlib>
@@ -22,8 +22,6 @@ int main() {
 
     return EXIT_SUCCESS;
 }
-
-// ----------------------------------------------------- //
 
 void mainLoop() {
     while (!glfwWindowShouldClose(window)) {
