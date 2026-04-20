@@ -7,8 +7,6 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_EXTENSIONS OFF)
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
-set(BASH "C:/Program Files/Git/bin/bash.exe")
-
 # ---- Default build type ----
 if(NOT CMAKE_BUILD_TYPE)
     set(CMAKE_BUILD_TYPE Debug CACHE STRING "Build type" FORCE)
@@ -35,7 +33,7 @@ add_subdirectory(external/glfw)
 
 # ---- shaders ----
 add_custom_target(run_script ALL
-    COMMAND ${BASH} shaders/compile.sh
+    COMMAND ${CMAKE_SOURCE_DIR}/shaders/compile.sh
     WORKING_DIRECTORY ${CMAKE_SOURCE_DIR}
 )
 
