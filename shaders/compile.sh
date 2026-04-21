@@ -3,9 +3,13 @@
 set -e
 
 SHADER_DIR="shaders"
-OUT_DIR="shaders"
+OUT_DIR="build/shaders"
 
 echo "Compiling shaders in: $SHADER_DIR"
+echo "Output directory: $OUT_DIR"
+
+# Create output directory if it doesn't exist
+mkdir -p "$OUT_DIR"
 
 # Loop through shader files
 find "$SHADER_DIR" -type f \( -name "*.vert" -o -name "*.frag" -o -name "*.comp" \) | while read -r shader; do
@@ -15,11 +19,6 @@ find "$SHADER_DIR" -type f \( -name "*.vert" -o -name "*.frag" -o -name "*.comp"
     echo "Compiling: $shader -> $output"
 
     glslc "$shader" -o "$output"
-
-    if [ $? -ne 0 ]; then
-        echo "Failed to compile $shader"
-        exit 1
-    fi
 done
 
 echo "All shaders compiled successfully."

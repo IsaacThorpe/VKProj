@@ -25,7 +25,6 @@ target_include_directories(VKProject PRIVATE
     ${CMAKE_CURRENT_SOURCE_DIR}/include
 )
 
-
 # ---- Multi-platform Dependencies ----
 find_package(Vulkan REQUIRED)
 
@@ -35,19 +34,12 @@ set(BUILD_SHARED_LIBS OFF CACHE BOOL "" FORCE)
 add_subdirectory(external/glfw)
 
 # ---- shaders ----
-add_custom_target(copy_shaders ALL
-    COMMAND ${CMAKE_COMMAND} -E copy_directory
-            ${CMAKE_SOURCE_DIR}/shaders
-            ${CMAKE_BINARY_DIR}/shaders
-)
 add_custom_target(run_script ALL
-    COMMAND ${BASH} ${CMAKE_SOURCE_DIR}/shaders/compile.sh
-    DEPENDS copy_shaders
+    COMMAND ${BASH} shaders/compile.sh
+    WORKING_DIRECTORY ${CMAKE_SOURCE_DIR}
 )
-
 
 # ------ Linking ------
-
 target_link_libraries(VKProject
     PRIVATE
         glfw
